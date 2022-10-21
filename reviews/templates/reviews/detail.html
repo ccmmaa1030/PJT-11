@@ -56,5 +56,27 @@
         <input class="green click rounded-pill my-1 px-3" type="submit" value="OK">
       </div>
     </form>
+    <hr>
+    {% for comment in comments %}
+      <p class="text-muted text-center">
+        {{ comments|length }}
+        COMMENTS
+      </p>
+      <div class="yellow shadow rounded-4 w-75 my-1">
+        <div class="row p-1 w-100">
+          <div class="col-2 py-2">
+            <p class="my-1 mx-3">{{ comment.user.username }}</p>
+          </div>
+          <div class="col-9 py-2">
+            <p class="my-1 mx-3">{{ comment.content }}</p>
+          </div>
+          <div class="col-1 py-1 left">
+            <a class="red click rounded-pill px-3" href="">DELETE</a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-muted text-center">0 COMMENTS</p>
+    {% endfor %}
   </div>
 {% endblock %}

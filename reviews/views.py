@@ -30,9 +30,11 @@ def index(request):
 def detail(request, review_pk):
     review = Review.objects.get(pk=review_pk)
     comment_form = CommentForm()
+    comments = review.comment_set.all()
     context = {
         'review': review,
-        'comment_form': comment_form
+        'comment_form': comment_form,
+        'comments': comments
     }
     return render(request, 'reviews/detail.html', context)
 
