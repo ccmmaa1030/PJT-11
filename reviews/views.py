@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import ReviewForm, CommentForm
-from .models import Review
+from .models import Review, Comment
 from django.contrib import messages
 
 @login_required
@@ -73,3 +73,9 @@ def comment_create(request, review_pk):
         comment.user = request.user
         comment.save()
     return redirect('reviews:detail', review.pk)
+
+@login_required
+def comment_delete(request, review_pk, comment_pk):
+    comment = Comment.objects.get(pk=comment_pk)
+    comment.delete()
+    return redirect('articles:detail', review_pk)

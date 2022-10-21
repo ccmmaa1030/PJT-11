@@ -70,9 +70,13 @@
           <div class="col-9 py-2">
             <p class="my-1 mx-3">{{ comment.content }}</p>
           </div>
-          <div class="col-1 py-1 left">
-            <a class="red click rounded-pill px-3" href="">DELETE</a>
-          </div>
+          {% if request.user.is_authenticated %}
+            {% if request.user == comment.user %}
+              <div class="col-1 py-1 left">
+                <a class="red click rounded-pill px-3" href="{% url 'reviews:comment_delete' review.pk comment.pk %}">DELETE</a>
+              </div>
+            {% endif %}
+          {% endif %}
         </div>
       </div>
       {% empty %}
