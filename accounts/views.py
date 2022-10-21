@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import get_user_model
 
 def signup(request):
     if request.method == 'POST':
@@ -28,3 +29,10 @@ def login(request):
         'form': form
     }
     return render(request, 'accounts/login.html', context)
+
+def detail(request, user_pk):
+    user = get_user_model().objects.get(pk=user_pk)
+    context = {
+        'user': user
+    }
+    return render(request, 'accounts/detail.html', context)
