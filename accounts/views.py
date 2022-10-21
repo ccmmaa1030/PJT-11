@@ -3,6 +3,8 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout as auth_logout
 
 def signup(request):
     if request.method == 'POST':
@@ -36,3 +38,8 @@ def detail(request, user_pk):
         'user': user
     }
     return render(request, 'accounts/detail.html', context)
+
+@login_required
+def logout(request):
+    auth_logout(request)
+    return redirect('accounts:login')
