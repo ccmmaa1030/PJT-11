@@ -48,5 +48,13 @@
         {% endif %}
       </div>
     </div>
+    <hr>
+    <form class="w-75" action="{% url 'reviews:comment_create' review.pk %}" method="POST">
+      {% csrf_token %}
+      {% bootstrap_form comment_form %}
+      <div class="left">
+        <input class="green click rounded-pill my-1 px-3" type="submit" value="OK">
+      </div>
+    </form>
   </div>
 {% endblock %}
