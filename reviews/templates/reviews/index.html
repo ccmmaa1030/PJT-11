@@ -22,7 +22,7 @@
             </div>
             <div class="box w-100 pt-4 pb-3 px-3">
               <img src="{{ review.image.url }}" class="card-img-top" alt="...">
-              <a class="text-dark fs-4 fw-bold mx-0" href="">{{ review.title }}</a>
+              <a class="text-dark fs-4 fw-bold mx-0" href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
               <p class="m-0 w-100 text-center">
                 {{ review.movie_name }}
                 |
