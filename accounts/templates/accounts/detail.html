@@ -30,5 +30,26 @@
         <a class="blue click rounded-pill m-1 px-3" href="{% url 'reviews:index' %}">HOME</a>
       </div>
     </div>
+    <hr>
+    <div class="row w-75">
+      <div class="col-6">
+        <p class="text-muted text-center">
+          {{ user.review_set.count }}
+          REVIEWS
+        </p>
+        {% for review in user.review_set.all %}
+          <div class="yellow shadow rounded-4 w-100 my-1">
+            <div class="row p-1 w-100">
+              <div class="col-2 py-1">
+                <p class="my-1 mx-3">{{ review.pk }}</p>
+              </div>
+              <div class="col-10 py-2">
+                <a class="text-dark my-1" href="{% url 'reviews:detail' review.pk %}">{{ review.title }}</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 {% endblock %}
