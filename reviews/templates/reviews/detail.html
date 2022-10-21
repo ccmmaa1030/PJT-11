@@ -43,7 +43,7 @@
         {% if request.user.is_authenticated %}
           {% if request.user == review.user %}
             <a class="blue click rounded-pill m-1 px-3" href="{% url 'reviews:update' review.pk %}">UPDATE</a>
-            <a class="red click rounded-pill m-1 px-3" href="">DELETE</a>
+            <a class="red click rounded-pill m-1 px-3" href="{% url 'reviews:delete' review.pk %}">DELETE</a>
           {% endif %}
         {% endif %}
       </div>
